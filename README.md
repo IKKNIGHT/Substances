@@ -1,14 +1,16 @@
-# Template Plugin for Spigot and CraftBukkit Servers
+# Substance Plugin for Spigot/CraftBukkit Servers.
 
-## Version: 1.20.X
+## Version: 1.20.6+
 
 ### Description:
-This is a template plugin feel free to use this however you like. This plugin allows for easy customization of plugin message prefixes by modifying a config file. Additionally, it provides commands for reloading the plugin configuration and responding to custom commands.
+This is a substance plugin. It adds various substances to the game, as of right now it only adds a "powder"
 
 ### Features:
 - **Prefix Customization**: Change the prefix of all plugin messages to customize the server's communication style.
 - **Config Reload Command**: Reload the plugin's configuration without restarting the server.
-- **TellMe Command**: Respond to custom commands from players with specific messages.
+- **Powder Command**: gives "powder" to a player
+- **Crafting Recipe**: ![image](https://github.com/user-attachments/assets/52cd7ba6-0cf4-4b98-8b4d-0ccbcf716b82)
+
 
 ### Usage:
 1. **Configuring Plugin Message Prefix**:
@@ -16,14 +18,14 @@ This is a template plugin feel free to use this however you like. This plugin al
    - Modify the `prefix` value to customize the prefix of all plugin messages.
 
 2. **Reloading Plugin Configuration**:
-   - Use the `/reloadtp` command to reload the plugin's configuration.
+   - Use the `/reloadsubstance` command to reload the plugin's configuration.
 
-3. **Using Custom Command**:
-   - Utilize the `/tellme <message>` command to have the server respond with a specific message.
+3. **Give-Powder Command**:
+   - Utilize the `/givepowder <player>` to give the specified player "powder" if not specified gives the command sender the "powder" (op)
 
 ### Example Configuration (PluginName / config.yml):
 ```yaml
 prefix: "&a[Server]&r " #< keep the space
 ```
 ### Issues
-Having an error or question? go to the issues page and create an issue [here](https://github.com/IKKNIGHT/TemplatePluginSpigot/issues)
+Having an error or question? go to the issues page and create an issue [here](https://github.com/IKKNIGHT/Substances/issues)
