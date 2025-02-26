@@ -1,0 +1,12 @@
+name: TEMPLATE-PLUGIN
+version: '${version}'
+main: org.example.ikknight.templatep.Main
+api-version: '1.20'
+commands:
+  tellme:
+    description: says whatever you tell it to
+    usage: /<command> <the thing you want the server to tell you>
+  reloadtp:
+    description: reloads this plugins configuration (PERMISSIONS --> OP)
+    usage: /<command>
+
