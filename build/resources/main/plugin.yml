@@ -3,7 +3,7 @@ version: '1.0-SNAPSHOT'
 main: org.example.ikknight.templatep.Main
 api-version: '1.20'
 commands:
-  reloadtp:
+  reloadsubstance:
     description: reloads this plugins configuration (PERMISSIONS --> OP)
     usage: /<command>
   givepowder:

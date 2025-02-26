@@ -46,7 +46,7 @@ public final class Main extends JavaPlugin {
         registerPowderRecipie();
         // init command
 
-        this.getCommand("reloadtp").setExecutor(new Reloadtp(this));
+        this.getCommand("reloadsubstance").setExecutor(new Reloadtp(this));
         this.getCommand("givepowder").setExecutor(new GivePowder());
 
         // init listeners
