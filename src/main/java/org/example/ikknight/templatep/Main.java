@@ -68,13 +68,14 @@ public final class Main extends JavaPlugin {
 
         meta.setDisplayName("Crystallized Methamphetamine");
         List<String> lore = new ArrayList<>();
-        lore.add(BasicUtils.color("&7\"The good stuff\"."));
-        lore.add(BasicUtils.color("&bMade in Mexico, transported by the cartel."));
+        lore.add(BasicUtils.color("&a"+"\"The good stuff\""));
+        lore.add(BasicUtils.color("&bMade in Mexico, transported by the cartel"));
         meta.setLore(lore);
 
         FoodComponent powderFood = meta.getFood();
         powderFood.setCanAlwaysEat(true);
-        powderFood.addEffect(new PotionEffect(PotionEffectType.NAUSEA,200,2),1.0f);
+        powderFood.addEffect(new PotionEffect(PotionEffectType.NAUSEA,200,2),0.8f);
+        powderFood.addEffect(new PotionEffect(PotionEffectType.DARKNESS,200,2),0.8f);
         meta.setFood(powderFood);
         powder.setItemMeta(meta);
 
@@ -83,11 +84,11 @@ public final class Main extends JavaPlugin {
                 powder
         );
 
-        recipe.shape("SPR");
+        recipe.shape("SPG");
 
         recipe.setIngredient('S', Material.SUGAR);
         recipe.setIngredient('P', Material.PHANTOM_MEMBRANE);
-        recipe.setIngredient('R', Material.REDSTONE);
+        recipe.setIngredient('G', Material.GLOWSTONE_DUST);
 
 
 
