@@ -3,6 +3,8 @@ package org.example.ikknight.templatep;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -12,6 +14,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.example.ikknight.templatep.commands.GivePowder;
 import org.example.ikknight.templatep.commands.Reloadtp;
 import org.example.ikknight.templatep.utils.Constants;
 import org.example.ikknight.templatep.utils.BasicUtils;
@@ -44,6 +47,7 @@ public final class Main extends JavaPlugin {
         // init command
 
         this.getCommand("reloadtp").setExecutor(new Reloadtp(this));
+        this.getCommand("givepowder").setExecutor(new GivePowder());
 
         // init listeners
 
@@ -63,21 +67,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void registerPowderRecipie(){
-        ItemStack powder = new ItemStack(Material.PHANTOM_MEMBRANE);
-        ItemMeta meta = powder.getItemMeta();
-
-        meta.setDisplayName("Crystallized Methamphetamine");
-        List<String> lore = new ArrayList<>();
-        lore.add(BasicUtils.color("&a"+"\"The good stuff\""));
-        lore.add(BasicUtils.color("&bMade in Mexico, transported by the cartel"));
-        meta.setLore(lore);
-
-        FoodComponent powderFood = meta.getFood();
-        powderFood.setCanAlwaysEat(true);
-        powderFood.addEffect(new PotionEffect(PotionEffectType.NAUSEA,200,2),0.8f);
-        powderFood.addEffect(new PotionEffect(PotionEffectType.DARKNESS,200,2),0.8f);
-        meta.setFood(powderFood);
-        powder.setItemMeta(meta);
+        ItemStack powder = getPowder();
 
         ShapedRecipe recipe = new ShapedRecipe(
                 new NamespacedKey(this,"powder"),
@@ -90,9 +80,27 @@ public final class Main extends JavaPlugin {
         recipe.setIngredient('P', Material.PHANTOM_MEMBRANE);
         recipe.setIngredient('G', Material.GLOWSTONE_DUST);
 
-
-
         Bukkit.addRecipe(recipe);
+    }
+    public static ItemStack getPowder(){
+        ItemStack powder = new ItemStack(Material.PHANTOM_MEMBRANE);
+        ItemMeta meta = powder.getItemMeta();
+
+        meta.setDisplayName("Crystallized Methamphetamine");
+        List<String> lore = new ArrayList<>();
+        lore.add(BasicUtils.color("&a"+"\"The good stuff\""));
+        lore.add(BasicUtils.color("&bMade in Mexico, transported by the cartel"));
+        meta.setLore(lore);
+        meta.addEnchant(Enchantment.INFINITY,1,true);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+        FoodComponent powderFood = meta.getFood();
+        powderFood.setCanAlwaysEat(true);
+        powderFood.addEffect(new PotionEffect(PotionEffectType.NAUSEA,200,2),0.8f);
+        powderFood.addEffect(new PotionEffect(PotionEffectType.DARKNESS,200,2),0.8f);
+        meta.setFood(powderFood);
+        powder.setItemMeta(meta);
+        return powder;
     }
 
     @Override

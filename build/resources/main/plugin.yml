@@ -6,4 +6,7 @@ commands:
   reloadtp:
     description: reloads this plugins configuration (PERMISSIONS --> OP)
     usage: /<command>
+  givepowder:
+    description: gives a player powder
+    usage: /<command> <player>
 
