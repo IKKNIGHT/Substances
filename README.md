@@ -16,7 +16,7 @@ This is a substance plugin. It adds various substances to the game, as of right 
 1. **Configuring Plugin Message Prefix**:
    - Open the `config.yml` file located in the plugin's source code.
    - Modify the `prefix` value to customize the prefix of all plugin messages.
-   - Craft the "powder" and when consumed has an 80% chance of giving nausea, and an 80% chance of giving darkness (independent event probability)
+   - Craft the "powder" and when consumed has an 80% chance of giving nausea, and an 80% chance of giving darkness (independent event probability) 1% chance of Strength 5 that lasts 10 minutes
 
 2. **Reloading Plugin Configuration**:
    - Use the `/reloadsubstance` command to reload the plugin's configuration.
