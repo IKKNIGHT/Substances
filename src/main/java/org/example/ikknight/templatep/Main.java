@@ -98,6 +98,7 @@ public final class Main extends JavaPlugin {
         powderFood.setCanAlwaysEat(true);
         powderFood.addEffect(new PotionEffect(PotionEffectType.NAUSEA,200,2),0.8f);
         powderFood.addEffect(new PotionEffect(PotionEffectType.DARKNESS,200,2),0.8f);
+        powderFood.addEffect(new PotionEffect(PotionEffectType.STRENGTH, 12000,5),0.01f); // strength
         meta.setFood(powderFood);
         powder.setItemMeta(meta);
         return powder;
