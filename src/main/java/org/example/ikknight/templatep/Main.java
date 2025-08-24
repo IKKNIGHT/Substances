@@ -9,6 +9,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
+import org.bukkit.inventory.meta.components.consumable.ConsumableComponent;
+import org.bukkit.inventory.meta.components.consumable.effects.ConsumableApplyEffects;
+import org.bukkit.inventory.meta.components.consumable.effects.ConsumableEffect;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,11 +19,14 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.example.ikknight.templatep.commands.GivePowder;
 import org.example.ikknight.templatep.commands.Reloadtp;
+import org.example.ikknight.templatep.listeners.PowderConsumeEvent;
 import org.example.ikknight.templatep.utils.Constants;
 import org.example.ikknight.templatep.utils.BasicUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.example.ikknight.templatep.utils.BasicUtils.setPrefix;
 
@@ -48,6 +54,7 @@ public final class Main extends JavaPlugin {
 
         this.getCommand("reloadsubstance").setExecutor(new Reloadtp(this));
         this.getCommand("givepowder").setExecutor(new GivePowder());
+        getServer().getPluginManager().registerEvents(new PowderConsumeEvent(), this); // effect handling
 
         // init listeners
 
@@ -82,6 +89,7 @@ public final class Main extends JavaPlugin {
 
         Bukkit.addRecipe(recipe);
     }
+
     public static ItemStack getPowder(){
         ItemStack powder = new ItemStack(Material.PHANTOM_MEMBRANE);
         ItemMeta meta = powder.getItemMeta();
@@ -95,11 +103,16 @@ public final class Main extends JavaPlugin {
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         FoodComponent powderFood = meta.getFood();
+        ConsumableComponent powderConsume = meta.getConsumable();
         powderFood.setCanAlwaysEat(true);
-        powderFood.addEffect(new PotionEffect(PotionEffectType.NAUSEA,200,2),0.8f);
-        powderFood.addEffect(new PotionEffect(PotionEffectType.DARKNESS,200,2),0.8f);
-        powderFood.addEffect(new PotionEffect(PotionEffectType.STRENGTH, 12000,5),0.01f); // strength
+        powderFood.setNutrition(1);
+        powderFood.setSaturation(1);
+        powderConsume.setConsumeSeconds(1);
+        powderConsume.setAnimation(ConsumableComponent.Animation.BRUSH);
         meta.setFood(powderFood);
+        meta.setConsumable(powderConsume);
+        // effects are handled using PowderConsumeEvent
+
         powder.setItemMeta(meta);
         return powder;
     }
